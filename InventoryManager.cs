@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class InventoryManager : MonoBehaviour, IGameManager {
     public ManagerStatus status { get; private set; }
 
-    private List<string> _items;
+    private Dictionary<string> _items;
 
     public void Startup() {
      Debug.Log("Inventory manager starting...");
 
-     _items = new List<string>();
+     _items = new Dictionary<string>();
 
      status = ManagerStatus.Started;
      }
@@ -23,8 +23,11 @@ public class InventoryManager : MonoBehaviour, IGameManager {
        Debug.Log(itemDisplay);
     }
     public void AddItem(string name){
-     _items.Add(name);
-
+    if (_items.ContainsKey(name)) {
+        _items[name] += 1;
+    } else {
+        _items[name] = 1;
+    }
      DisplayItems();
     }
 }

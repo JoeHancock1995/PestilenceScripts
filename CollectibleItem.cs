@@ -6,7 +6,7 @@ public class CollectibleItem : MonoBehaviour {
     [SerializeField] private string itemName;
 
     void onTriggerEnter(Collider other) {
-        Debug.Log("Item collected: " + itemName);
+        Managers.Inventory.AddItem(name);
         Destroy(this.gameObject);
     } 
 }
