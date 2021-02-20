@@ -5,19 +5,19 @@ using System.Collections.Generic;
 public class InventoryManager : MonoBehaviour, IGameManager {
     public ManagerStatus status { get; private set; }
 
-    private Dictionary<string> _items;
+    private Dictionary<string, int> _items;
 
     public void Startup() {
      Debug.Log("Inventory manager starting...");
 
-     _items = new Dictionary<string>();
+     _items = new Dictionary<string, int>();
 
      status = ManagerStatus.Started;
      }
 
     private void DisplayItems() {
         string itemDisplay = "Items: ";
-        foreach (string item in _items) {
+        foreach (KeyValuePair<string, int> item in _items) {
             itemDisplay += item + " ";
         }
        Debug.Log(itemDisplay);
